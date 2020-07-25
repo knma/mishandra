@@ -1,0 +1,81 @@
+syntax = "proto3";
+
+message PointSet {
+  string name = 1;
+  bytes P = 2;                        // position (n,3,)
+  bytes N = 3;                        // normal (n,3,)
+  bytes v = 4;                        // velocity (n,3,)
+  bytes scale = 5;                    // scale (n,3,)
+  bytes Cd = 6;                       // diffuse color (n,3,)
+  bytes Alpha = 7;                    // alpha (n,)
+  bytes Cs = 8;                       // specular color (n,3,)
+  bytes Cr = 9;                       // reflect color (n,3,)
+  bytes Ct = 10;                      // transmit color (n,3,)
+  bytes Ce = 11;                      // emission color (n,3,)
+  bytes rough = 12;                   // roughness (n,)
+  bytes fresnel = 13;                 // fresnel coefficient (n,)
+  bytes shadow = 14;                  // shadow intensity (n,)
+  bytes uv = 15;                      // uv map (n,4)
+  bytes group = 16;                   // point group (n,)
+}
+
+message Transform {
+  string name = 1;
+  bytes T = 2;                        // translation (3,)
+  bytes Q = 3;                        // quaternion (4,)
+}
+
+message Camera {
+  string name = 1;
+  Transform extrinsic = 2;            // extrinsic parameters
+  bytes intrinsic = 3;                // camera matrix (3,3)
+  bytes distCoeffs = 4;               // distortion coefficients {8,}
+}
+
+message Image {
+  string name = 1;
+  string format = 2;                  // jpg / png
+  uint32 width = 3;
+  uint32 height = 4;
+  uint32 channels = 5;
+  uint32 png_compression = 6;         // 0..9
+  uint32 jpeg_quality = 7;            // 0..100
+  bytes data = 8;                     // encoded image data
+}
+
+message ImageRaw {
+  string name = 1;
+  string dtype = 2;                   
+  uint32 width = 3;
+  uint32 height = 4;
+  uint32 channels = 5;
+  bytes data = 6;
+}
+
+message Mesh {
+  string name = 1;
+  PointSet pointSet = 2;
+  bytes faces = 3;                    // point indices (m,3,)
+}
+
+message Object {
+  string name = 1;
+  Transform transform = 2;
+  PointSet pointSet = 3;
+  Mesh mesh = 4;
+  Camera camera = 5;
+  repeated Image images = 6;
+  repeated ImageRaw imagesRaw = 7;
+}
+
+message Scene {
+  string name = 1;
+  repeated Object objects = 2;
+}
+
+message Row {
+  int64 frame = 1;
+  string name = 2;
+  string description = 3;
+  repeated Scene scenes =43;          // a set of Scenes (N,)
+}
