@@ -1,4 +1,4 @@
-![](http://knma.github.io/static/misha_800.svg)
+![](http://knma.github.io/static/misha_1600.png)
 
 ## Overview
 Simple distributed data storage and usage.
@@ -11,4 +11,12 @@ Simple distributed data storage and usage.
 3. Add ```%CASSANDRA_HOME%\bin``` to ```%PATH%```.
 4. Download [Amazon Corretto](https://docs.aws.amazon.com/en_us/corretto/latest/corretto-8-ug/downloads-list.html) (JDK) and install it with default settings.
 
-To start Cassandra, open PowerShell as administrator and run ```cassandra -f```. If you get ```WARNING! Powershell script execution unavailable```, please run ```Set-ExecutionPolicy Unrestricted``` and try again.
+To start Cassandra, open PowerShell as administrator and run 
+```
+cassandra -f
+```
+If you get ```WARNING! Powershell script execution unavailable```, please run 
+```
+Set-ExecutionPolicy Unrestricted
+```
+and try again.
