@@ -1,4 +1,4 @@
-![](http://knma.github.io/static/misha_1600.png)
+![](./docs/misha_1600.png)
 
 ## Overview
 Simple distributed data storage and usage.
