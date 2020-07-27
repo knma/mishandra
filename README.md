@@ -7,7 +7,7 @@ Mishandra aims to simplify:
 1. Data management in R&D workflows and production pipelines. 
 2. Data iteroperability between content creation and machine learning tools.
 
-\* digital pain occurs when abandoned complexity of some technological environment ruins your plans to make a world a better place.
+\* digital pain occurs when abandoned complexity of a technological environment ruins your plans to make a world a better place.
 
 ### Supported interfaces
 * [Trimesh](https://github.com/mikedh/trimesh)
@@ -40,7 +40,7 @@ Mishandra requires python 3.5+
 ```
 pip install git+https://github.com/knma/mishandra.git@master
 ```
-You also need [ffmpeg](https://ffmpeg.org/download.html) installed on your system to run examples. Please dpn't forget to add to ```PATH```.
+You also need [ffmpeg](https://ffmpeg.org/download.html) installed on your system to run examples. Please don't forget to add it to ```PATH```.
 
 
 ## Sample Usage
