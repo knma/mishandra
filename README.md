@@ -1,7 +1,19 @@
 ![](./docs/misha_1600.png)
 
 ## Overview
-Simple distributed data storage.
+Simple distributed data storage with no digital pain*. 
+
+Mishandra aims to simplify:
+1. Data management in R&D workflows and production pipelines. 
+2. Data iteroperability between content creation and machine learning tools.
+
+\* digital pain occurs when abandoned complexity of some technological environment ruins your plans to make a world a better place.
+
+### Supported interfaces
+* [Trimesh](https://github.com/mikedh/trimesh)
+* [Houdini](https://www.sidefx.com/) in progress
+* [Blender](https://www.blender.org/) in progress
+* [PyTorch](https://pytorch.org/) in progress
 
 ## Installation
 
@@ -23,7 +35,15 @@ If you get ```WARNING! Powershell script execution unavailable```, please run ``
 TODO
 
 ### 2. Install Mishandra
+Mishandra requires python 3.5+
 
 ```
 pip install git+https://github.com/knma/mishandra.git@master
 ```
+You also need [ffmpeg](https://ffmpeg.org/download.html) installed on your system to run examples. Please dpn't forget to add to ```PATH```.
+
+
+## Sample Usage
+Please take a look at notebooks in ```examples``` directory.
+* [examples_python.ipynb](examples/examples_python.ipynb)
+
