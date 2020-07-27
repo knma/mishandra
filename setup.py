@@ -21,9 +21,12 @@ setuptools.setup(
        'numpy',
        'scipy',
        'pandas',
+       'trimesh',
+       'pyrender @ git+https://github.com/knma/pyrender.git',
        'protobuf',
        'opencv-python',
        'ffmpeg-python',
-       'cassandra-driver>=3.24'
+       'cassandra-driver>=3.24',
+       'Pillow'
     ]
 )
