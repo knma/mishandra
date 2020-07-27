@@ -53,24 +53,27 @@ message ImageRaw {
 }
 
 message Mesh {
-  string name = 1;
-  PointSet pointSet = 2;
-  bytes faces = 3;                    // point indices (m,3,)
+  int32 index = 1;
+  string name = 2;
+  PointSet pointSet = 3;
+  bytes faces = 4;                    // point indices (m,3,)
 }
 
 message Object {
-  string name = 1;
-  Transform transform = 2;
-  PointSet pointSet = 3;
-  Mesh mesh = 4;
-  Camera camera = 5;
-  repeated Image images = 6;
-  repeated ImageRaw imagesRaw = 7;
+  int32 index = 1;
+  string name = 2;
+  Transform transform = 3;
+  PointSet pointSet = 4;
+  Mesh mesh = 5;
+  Camera camera = 6;
+  repeated Image images = 7;
+  repeated ImageRaw imagesRaw = 8;
 }
 
 message Scene {
   string name = 1;
-  repeated Object objects = 2;
+  string description = 2;
+  repeated Object objects = 3;
 }
 
 message Row {

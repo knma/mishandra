@@ -8,7 +8,7 @@ setuptools.setup(
     version="0.1.0",
     author="kenoma",
     author_email="pavelzyr@gmail.com",
-    description="Simple distributed data storage and usage",
+    description="Simple distributed data storage without digital pain.",
     long_description=long_description,
     url="https://github.com/knma/mishandra",
     packages=setuptools.find_packages(),
@@ -19,8 +19,11 @@ setuptools.setup(
     ],
     install_requires=[
        'numpy',
+       'scipy',
        'pandas',
+       'protobuf',
        'opencv-python',
+       'ffmpeg-python',
        'cassandra-driver>=3.24'
     ]
 )

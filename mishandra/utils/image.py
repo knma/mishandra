@@ -1,7 +1,7 @@
 import sys, os, io
 import numpy as np
-import cv2
 from PIL import Image
+import cv2
 
 
 uint8_dt = np.uint8(1).dtype.newbyteorder('<')
@@ -16,7 +16,6 @@ def encode_image(image, format='.jpg', jpeg_quality=95, png_compresion=3):
   if not is_success:
     return None
   return data.astype(uint8_dt).tobytes()
-
 
 def decode_image(data, type='cv'):
   if type.lower() == 'cv':

@@ -1,4 +1,7 @@
 *.exe
+*.mp4
+*.misha
+examples/mishatemp
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
