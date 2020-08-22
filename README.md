@@ -1,13 +1,11 @@
 ![](./docs/misha_1600.png)
 
 ## Overview
-Simple distributed data storage with no digital pain*. 
+Simple and flexible data representation.
 
 Mishandra aims to simplify:
 1. Data management in R&D workflows and production pipelines. 
 2. Data iteroperability between content creation and machine learning tools.
-
-\* digital pain occurs when abandoned complexity of a technological environment ruins your plans to make a world a better place.
 
 ### Supported interfaces
 * [Trimesh](https://github.com/mikedh/trimesh)
