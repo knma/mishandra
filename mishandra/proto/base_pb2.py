@@ -19,10 +19,75 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\nbase.proto\"\xde\x01\n\x08PointSet\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\t\n\x01P\x18\x02 \x01(\x0c\x12\t\n\x01N\x18\x03 \x01(\x0c\x12\t\n\x01v\x18\x04 \x01(\x0c\x12\r\n\x05scale\x18\x05 \x01(\x0c\x12\n\n\x02\x43\x64\x18\x06 \x01(\x0c\x12\r\n\x05\x41lpha\x18\x07 \x01(\x0c\x12\n\n\x02\x43s\x18\x08 \x01(\x0c\x12\n\n\x02\x43r\x18\t \x01(\x0c\x12\n\n\x02\x43t\x18\n \x01(\x0c\x12\n\n\x02\x43\x65\x18\x0b \x01(\x0c\x12\r\n\x05rough\x18\x0c \x01(\x0c\x12\x0f\n\x07\x66resnel\x18\r \x01(\x0c\x12\x0e\n\x06shadow\x18\x0e \x01(\x0c\x12\n\n\x02uv\x18\x0f \x01(\x0c\x12\r\n\x05group\x18\x10 \x01(\x0c\"/\n\tTransform\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\t\n\x01T\x18\x02 \x01(\x0c\x12\t\n\x01Q\x18\x03 \x01(\x0c\"\\\n\x06\x43\x61mera\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x1d\n\textrinsic\x18\x02 \x01(\x0b\x32\n.Transform\x12\x11\n\tintrinsic\x18\x03 \x01(\x0c\x12\x12\n\ndistCoeffs\x18\x04 \x01(\x0c\"\x93\x01\n\x05Image\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0e\n\x06\x66ormat\x18\x02 \x01(\t\x12\r\n\x05width\x18\x03 \x01(\r\x12\x0e\n\x06height\x18\x04 \x01(\r\x12\x10\n\x08\x63hannels\x18\x05 \x01(\r\x12\x17\n\x0fpng_compression\x18\x06 \x01(\r\x12\x14\n\x0cjpeg_quality\x18\x07 \x01(\r\x12\x0c\n\x04\x64\x61ta\x18\x08 \x01(\x0c\"f\n\x08ImageRaw\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05\x64type\x18\x02 \x01(\t\x12\r\n\x05width\x18\x03 \x01(\r\x12\x0e\n\x06height\x18\x04 \x01(\r\x12\x10\n\x08\x63hannels\x18\x05 \x01(\r\x12\x0c\n\x04\x64\x61ta\x18\x06 \x01(\x0c\"O\n\x04Mesh\x12\r\n\x05index\x18\x01 \x01(\x05\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x1b\n\x08pointSet\x18\x03 \x01(\x0b\x32\t.PointSet\x12\r\n\x05\x66\x61\x63\x65s\x18\x04 \x01(\x0c\"\xc5\x01\n\x06Object\x12\r\n\x05index\x18\x01 \x01(\x05\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x1d\n\ttransform\x18\x03 \x01(\x0b\x32\n.Transform\x12\x1b\n\x08pointSet\x18\x04 \x01(\x0b\x32\t.PointSet\x12\x13\n\x04mesh\x18\x05 \x01(\x0b\x32\x05.Mesh\x12\x17\n\x06\x63\x61mera\x18\x06 \x01(\x0b\x32\x07.Camera\x12\x16\n\x06images\x18\x07 \x03(\x0b\x32\x06.Image\x12\x1c\n\timagesRaw\x18\x08 \x03(\x0b\x32\t.ImageRaw\"D\n\x05Scene\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12\x18\n\x07objects\x18\x03 \x03(\x0b\x32\x07.Object\"O\n\x03Row\x12\r\n\x05\x66rame\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\x16\n\x06scenes\x18+ \x03(\x0b\x32\x06.Sceneb\x06proto3'
+  serialized_pb=b'\n\nbase.proto\"\xc4\x02\n\x08PointSet\x12\t\n\x01P\x18\x01 \x01(\x0c\x12\t\n\x01N\x18\x02 \x01(\x0c\x12\t\n\x01v\x18\x03 \x01(\x0c\x12\t\n\x01T\x18\x04 \x01(\x0c\x12\x0e\n\x06orient\x18\x05 \x01(\x0c\x12\r\n\x05scale\x18\x06 \x01(\x0c\x12\x0e\n\x06pscale\x18\x07 \x01(\x0c\x12\n\n\x02\x43\x64\x18\x08 \x01(\x0c\x12\r\n\x05\x41lpha\x18\t \x01(\x0c\x12\n\n\x02\x43s\x18\n \x01(\x0c\x12\n\n\x02\x43r\x18\x0b \x01(\x0c\x12\n\n\x02\x43t\x18\x0c \x01(\x0c\x12\n\n\x02\x43\x65\x18\r \x01(\x0c\x12\r\n\x05rough\x18\x0e \x01(\x0c\x12\x0f\n\x07\x66resnel\x18\x0f \x01(\x0c\x12\x0e\n\x06shadow\x18\x10 \x01(\x0c\x12\x0e\n\x06groups\x18\x11 \x01(\x0c\x12\x12\n\ngroupNames\x18\x12 \x03(\t\x12\x0c\n\x04\x64\x61ta\x18\x13 \x01(\x0c\x12\x14\n\x0c\x63\x61\x63hedFields\x18\x14 \x03(\t\x12\x1a\n\x12lowPrecisionFields\x18\x15 \x03(\t\"\x88\x02\n\x0cPrimitiveSet\x12)\n\x04type\x18\x01 \x01(\x0e\x32\x1b.PrimitiveSet.PrimitiveType\x12\n\n\x02\x43\x64\x18\x02 \x01(\x0c\x12\r\n\x05\x41lpha\x18\x03 \x01(\x0c\x12\r\n\x05\x66\x61\x63\x65s\x18\x04 \x01(\x0c\x12\n\n\x02uv\x18\x05 \x01(\x0c\x12\t\n\x01N\x18\x06 \x01(\x0c\x12\x0e\n\x06groups\x18\x07 \x01(\x0c\x12\x12\n\ngroupNames\x18\x08 \x03(\t\x12\x0b\n\x03nPV\x18\t \x01(\x05\x12\x0b\n\x03nUV\x18\n \x01(\x05\x12\x14\n\x0c\x63\x61\x63hedFields\x18\x0b \x03(\t\x12\x1a\n\x12lowPrecisionFields\x18\x0c \x03(\t\"\x1c\n\rPrimitiveType\x12\x0b\n\x07POLYGON\x10\x00\"[\n\tTransform\x12\n\n\x02id\x18\x01 \x01(\x05\x12\t\n\x01T\x18\x02 \x01(\x0c\x12\t\n\x01R\x18\x03 \x01(\x0c\x12\r\n\x05scale\x18\x04 \x01(\x0c\x12\x1d\n\ttransform\x18\x05 \x03(\x0b\x32\n.Transform\"\x8f\x01\n\x06\x43\x61mera\x12 \n\x04type\x18\x01 \x01(\x0e\x32\x12.Camera.CameraType\x12\x1d\n\textrinsic\x18\x02 \x01(\x0b\x32\n.Transform\x12\x11\n\tintrinsic\x18\x03 \x01(\x0c\x12\x12\n\ndistCoeffs\x18\x04 \x01(\x0c\"\x1d\n\nCameraType\x12\x0f\n\x0bPERSPECTIVE\x10\x00\"\xc9\x01\n\x05Image\x12\"\n\x06\x66ormat\x18\x01 \x01(\x0e\x32\x12.Image.ImageFormat\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\r\n\x05width\x18\x03 \x01(\r\x12\x0e\n\x06height\x18\x04 \x01(\r\x12\x10\n\x08\x63hannels\x18\x05 \x01(\r\x12\x17\n\x0fpng_compression\x18\x06 \x01(\r\x12\x14\n\x0cjpeg_quality\x18\x07 \x01(\r\x12\x0c\n\x04\x64\x61ta\x18\x08 \x01(\x0c\" \n\x0bImageFormat\x12\x07\n\x03PNG\x10\x00\x12\x08\n\x04JPEG\x10\x01\"f\n\x08ImageRaw\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05\x64type\x18\x02 \x01(\t\x12\r\n\x05width\x18\x03 \x01(\r\x12\x0e\n\x06height\x18\x04 \x01(\r\x12\x10\n\x08\x63hannels\x18\x05 \x01(\r\x12\x0c\n\x04\x64\x61ta\x18\x06 \x01(\x0c\"\x9b\x01\n\x08Geometry\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x1b\n\x08pointSet\x18\x03 \x01(\x0b\x32\t.PointSet\x12#\n\x0cprimitiveSet\x18\x04 \x01(\x0b\x32\r.PrimitiveSet\x12\x1d\n\ttransform\x18\x05 \x01(\x0b\x32\n.Transform\x12\x14\n\x0c\x63\x61\x63hedFields\x18\x06 \x03(\t\"\\\n\x0f\x41udioChannelRaw\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\r\n\x05\x64type\x18\x03 \x01(\t\x12\x12\n\nsampleRate\x18\x04 \x01(\x05\x12\x0c\n\x04\x64\x61ta\x18\x05 \x01(\x0c\"\xa5\x02\n\x06Object\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0c\n\x04text\x18\x03 \x01(\t\x12\x17\n\x06\x63\x61mera\x18\x04 \x01(\x0b\x32\x07.Camera\x12\x1d\n\ttransform\x18\x05 \x01(\x0b\x32\n.Transform\x12\x1b\n\x08geometry\x18\x06 \x03(\x0b\x32\t.Geometry\x12\x16\n\x06images\x18\x07 \x03(\x0b\x32\x06.Image\x12\x1c\n\timagesRaw\x18\x08 \x03(\x0b\x32\t.ImageRaw\x12*\n\x10\x61udioChannelsRaw\x18\t \x03(\x0b\x32\x10.AudioChannelRaw\x12\x18\n\x07objects\x18\n \x03(\x0b\x32\x07.Object\x12\x0c\n\x04\x64\x61ta\x18\x0b \x01(\x0c\x12\x14\n\x0c\x63\x61\x63hedFields\x18\x0c \x03(\t\"N\n\x05\x46rame\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x11\n\ttimestamp\x18\x03 \x01(\x02\x12\x18\n\x07objects\x18\x04 \x03(\x0b\x32\x07.Object\"p\n\x08\x46rameSet\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x16\n\x06\x66rames\x18\x02 \x03(\x0b\x32\x06.Frame\x12\x1c\n\tframeSets\x18\x03 \x03(\x0b\x32\t.FrameSet\x12\x0f\n\x07version\x18\x04 \x01(\t\x12\x11\n\tis_master\x18\x05 \x01(\x08\x62\x06proto3'
 )
 
 
+
+_PRIMITIVESET_PRIMITIVETYPE = _descriptor.EnumDescriptor(
+  name='PrimitiveType',
+  full_name='PrimitiveSet.PrimitiveType',
+  filename=None,
+  file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='POLYGON', index=0, number=0,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+  ],
+  containing_type=None,
+  serialized_options=None,
+  serialized_start=578,
+  serialized_end=606,
+)
+_sym_db.RegisterEnumDescriptor(_PRIMITIVESET_PRIMITIVETYPE)
+
+_CAMERA_CAMERATYPE = _descriptor.EnumDescriptor(
+  name='CameraType',
+  full_name='Camera.CameraType',
+  filename=None,
+  file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='PERSPECTIVE', index=0, number=0,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+  ],
+  containing_type=None,
+  serialized_options=None,
+  serialized_start=816,
+  serialized_end=845,
+)
+_sym_db.RegisterEnumDescriptor(_CAMERA_CAMERATYPE)
+
+_IMAGE_IMAGEFORMAT = _descriptor.EnumDescriptor(
+  name='ImageFormat',
+  full_name='Image.ImageFormat',
+  filename=None,
+  file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='PNG', index=0, number=0,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='JPEG', index=1, number=1,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+  ],
+  containing_type=None,
+  serialized_options=None,
+  serialized_start=1017,
+  serialized_end=1049,
+)
+_sym_db.RegisterEnumDescriptor(_IMAGE_IMAGEFORMAT)
 
 
 _POINTSET = _descriptor.Descriptor(
@@ -34,114 +99,149 @@ _POINTSET = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='name', full_name='PointSet.name', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
+      name='P', full_name='PointSet.P', index=0,
+      number=1, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='P', full_name='PointSet.P', index=1,
+      name='N', full_name='PointSet.N', index=1,
       number=2, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='N', full_name='PointSet.N', index=2,
+      name='v', full_name='PointSet.v', index=2,
       number=3, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='v', full_name='PointSet.v', index=3,
+      name='T', full_name='PointSet.T', index=3,
       number=4, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='scale', full_name='PointSet.scale', index=4,
+      name='orient', full_name='PointSet.orient', index=4,
       number=5, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='Cd', full_name='PointSet.Cd', index=5,
+      name='scale', full_name='PointSet.scale', index=5,
       number=6, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='Alpha', full_name='PointSet.Alpha', index=6,
+      name='pscale', full_name='PointSet.pscale', index=6,
       number=7, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='Cs', full_name='PointSet.Cs', index=7,
+      name='Cd', full_name='PointSet.Cd', index=7,
       number=8, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='Cr', full_name='PointSet.Cr', index=8,
+      name='Alpha', full_name='PointSet.Alpha', index=8,
       number=9, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='Ct', full_name='PointSet.Ct', index=9,
+      name='Cs', full_name='PointSet.Cs', index=9,
       number=10, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='Ce', full_name='PointSet.Ce', index=10,
+      name='Cr', full_name='PointSet.Cr', index=10,
       number=11, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='rough', full_name='PointSet.rough', index=11,
+      name='Ct', full_name='PointSet.Ct', index=11,
       number=12, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='fresnel', full_name='PointSet.fresnel', index=12,
+      name='Ce', full_name='PointSet.Ce', index=12,
       number=13, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='shadow', full_name='PointSet.shadow', index=13,
+      name='rough', full_name='PointSet.rough', index=13,
       number=14, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='uv', full_name='PointSet.uv', index=14,
+      name='fresnel', full_name='PointSet.fresnel', index=14,
       number=15, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='group', full_name='PointSet.group', index=15,
+      name='shadow', full_name='PointSet.shadow', index=15,
       number=16, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='groups', full_name='PointSet.groups', index=16,
+      number=17, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='groupNames', full_name='PointSet.groupNames', index=17,
+      number=18, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='data', full_name='PointSet.data', index=18,
+      number=19, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='cachedFields', full_name='PointSet.cachedFields', index=19,
+      number=20, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='lowPrecisionFields', full_name='PointSet.lowPrecisionFields', index=20,
+      number=21, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
@@ -158,7 +258,117 @@ _POINTSET = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=15,
-  serialized_end=237,
+  serialized_end=339,
+)
+
+
+_PRIMITIVESET = _descriptor.Descriptor(
+  name='PrimitiveSet',
+  full_name='PrimitiveSet',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='type', full_name='PrimitiveSet.type', index=0,
+      number=1, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='Cd', full_name='PrimitiveSet.Cd', index=1,
+      number=2, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='Alpha', full_name='PrimitiveSet.Alpha', index=2,
+      number=3, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='faces', full_name='PrimitiveSet.faces', index=3,
+      number=4, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='uv', full_name='PrimitiveSet.uv', index=4,
+      number=5, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='N', full_name='PrimitiveSet.N', index=5,
+      number=6, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='groups', full_name='PrimitiveSet.groups', index=6,
+      number=7, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='groupNames', full_name='PrimitiveSet.groupNames', index=7,
+      number=8, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='nPV', full_name='PrimitiveSet.nPV', index=8,
+      number=9, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='nUV', full_name='PrimitiveSet.nUV', index=9,
+      number=10, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='cachedFields', full_name='PrimitiveSet.cachedFields', index=10,
+      number=11, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='lowPrecisionFields', full_name='PrimitiveSet.lowPrecisionFields', index=11,
+      number=12, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+    _PRIMITIVESET_PRIMITIVETYPE,
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=342,
+  serialized_end=606,
 )
 
 
@@ -171,9 +381,9 @@ _TRANSFORM = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='name', full_name='Transform.name', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
+      name='id', full_name='Transform.id', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
@@ -185,9 +395,23 @@ _TRANSFORM = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='Q', full_name='Transform.Q', index=2,
+      name='R', full_name='Transform.R', index=2,
       number=3, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='scale', full_name='Transform.scale', index=3,
+      number=4, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='transform', full_name='Transform.transform', index=4,
+      number=5, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
@@ -203,8 +427,8 @@ _TRANSFORM = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=239,
-  serialized_end=286,
+  serialized_start=608,
+  serialized_end=699,
 )
 
 
@@ -217,9 +441,9 @@ _CAMERA = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='name', full_name='Camera.name', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
+      name='type', full_name='Camera.type', index=0,
+      number=1, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
@@ -249,6 +473,7 @@ _CAMERA = _descriptor.Descriptor(
   ],
   nested_types=[],
   enum_types=[
+    _CAMERA_CAMERATYPE,
   ],
   serialized_options=None,
   is_extendable=False,
@@ -256,8 +481,8 @@ _CAMERA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=288,
-  serialized_end=380,
+  serialized_start=702,
+  serialized_end=845,
 )
 
 
@@ -270,14 +495,14 @@ _IMAGE = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='name', full_name='Image.name', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
+      name='format', full_name='Image.format', index=0,
+      number=1, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='format', full_name='Image.format', index=1,
+      name='name', full_name='Image.name', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -330,6 +555,7 @@ _IMAGE = _descriptor.Descriptor(
   ],
   nested_types=[],
   enum_types=[
+    _IMAGE_IMAGEFORMAT,
   ],
   serialized_options=None,
   is_extendable=False,
@@ -337,8 +563,8 @@ _IMAGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=383,
-  serialized_end=530,
+  serialized_start=848,
+  serialized_end=1049,
 )
 
 
@@ -404,43 +630,117 @@ _IMAGERAW = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=532,
-  serialized_end=634,
+  serialized_start=1051,
+  serialized_end=1153,
 )
 
 
-_MESH = _descriptor.Descriptor(
-  name='Mesh',
-  full_name='Mesh',
+_GEOMETRY = _descriptor.Descriptor(
+  name='Geometry',
+  full_name='Geometry',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='index', full_name='Mesh.index', index=0,
+      name='id', full_name='Geometry.id', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='name', full_name='Mesh.name', index=1,
+      name='name', full_name='Geometry.name', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='pointSet', full_name='Mesh.pointSet', index=2,
+      name='pointSet', full_name='Geometry.pointSet', index=2,
       number=3, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='faces', full_name='Mesh.faces', index=3,
-      number=4, type=12, cpp_type=9, label=1,
+      name='primitiveSet', full_name='Geometry.primitiveSet', index=3,
+      number=4, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='transform', full_name='Geometry.transform', index=4,
+      number=5, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='cachedFields', full_name='Geometry.cachedFields', index=5,
+      number=6, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1156,
+  serialized_end=1311,
+)
+
+
+_AUDIOCHANNELRAW = _descriptor.Descriptor(
+  name='AudioChannelRaw',
+  full_name='AudioChannelRaw',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='id', full_name='AudioChannelRaw.id', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='name', full_name='AudioChannelRaw.name', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='dtype', full_name='AudioChannelRaw.dtype', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='sampleRate', full_name='AudioChannelRaw.sampleRate', index=3,
+      number=4, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='data', full_name='AudioChannelRaw.data', index=4,
+      number=5, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -457,8 +757,8 @@ _MESH = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=636,
-  serialized_end=715,
+  serialized_start=1313,
+  serialized_end=1405,
 )
 
 
@@ -471,7 +771,7 @@ _OBJECT = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='index', full_name='Object.index', index=0,
+      name='id', full_name='Object.id', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -485,30 +785,30 @@ _OBJECT = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='transform', full_name='Object.transform', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
+      name='text', full_name='Object.text', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='pointSet', full_name='Object.pointSet', index=3,
+      name='camera', full_name='Object.camera', index=3,
       number=4, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='mesh', full_name='Object.mesh', index=4,
+      name='transform', full_name='Object.transform', index=4,
       number=5, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='camera', full_name='Object.camera', index=5,
-      number=6, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
+      name='geometry', full_name='Object.geometry', index=5,
+      number=6, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
@@ -526,48 +826,30 @@ _OBJECT = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=718,
-  serialized_end=915,
-)
-
-
-_SCENE = _descriptor.Descriptor(
-  name='Scene',
-  full_name='Scene',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
     _descriptor.FieldDescriptor(
-      name='name', full_name='Scene.name', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
+      name='audioChannelsRaw', full_name='Object.audioChannelsRaw', index=8,
+      number=9, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='description', full_name='Scene.description', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
+      name='objects', full_name='Object.objects', index=9,
+      number=10, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='objects', full_name='Scene.objects', index=2,
-      number=3, type=11, cpp_type=10, label=3,
+      name='data', full_name='Object.data', index=10,
+      number=11, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='cachedFields', full_name='Object.cachedFields', index=11,
+      number=12, type=9, cpp_type=9, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -584,43 +866,43 @@ _SCENE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=917,
-  serialized_end=985,
+  serialized_start=1408,
+  serialized_end=1701,
 )
 
 
-_ROW = _descriptor.Descriptor(
-  name='Row',
-  full_name='Row',
+_FRAME = _descriptor.Descriptor(
+  name='Frame',
+  full_name='Frame',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='frame', full_name='Row.frame', index=0,
-      number=1, type=3, cpp_type=2, label=1,
+      name='id', full_name='Frame.id', index=0,
+      number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='name', full_name='Row.name', index=1,
+      name='name', full_name='Frame.name', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='description', full_name='Row.description', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
+      name='timestamp', full_name='Frame.timestamp', index=2,
+      number=3, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='scenes', full_name='Row.scenes', index=3,
-      number=43, type=11, cpp_type=10, label=3,
+      name='objects', full_name='Frame.objects', index=3,
+      number=4, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -637,29 +919,102 @@ _ROW = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=987,
-  serialized_end=1066,
+  serialized_start=1703,
+  serialized_end=1781,
 )
 
+
+_FRAMESET = _descriptor.Descriptor(
+  name='FrameSet',
+  full_name='FrameSet',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='id', full_name='FrameSet.id', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='frames', full_name='FrameSet.frames', index=1,
+      number=2, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='frameSets', full_name='FrameSet.frameSets', index=2,
+      number=3, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='version', full_name='FrameSet.version', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='is_master', full_name='FrameSet.is_master', index=4,
+      number=5, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1783,
+  serialized_end=1895,
+)
+
+_PRIMITIVESET.fields_by_name['type'].enum_type = _PRIMITIVESET_PRIMITIVETYPE
+_PRIMITIVESET_PRIMITIVETYPE.containing_type = _PRIMITIVESET
+_TRANSFORM.fields_by_name['transform'].message_type = _TRANSFORM
+_CAMERA.fields_by_name['type'].enum_type = _CAMERA_CAMERATYPE
 _CAMERA.fields_by_name['extrinsic'].message_type = _TRANSFORM
-_MESH.fields_by_name['pointSet'].message_type = _POINTSET
-_OBJECT.fields_by_name['transform'].message_type = _TRANSFORM
-_OBJECT.fields_by_name['pointSet'].message_type = _POINTSET
-_OBJECT.fields_by_name['mesh'].message_type = _MESH
+_CAMERA_CAMERATYPE.containing_type = _CAMERA
+_IMAGE.fields_by_name['format'].enum_type = _IMAGE_IMAGEFORMAT
+_IMAGE_IMAGEFORMAT.containing_type = _IMAGE
+_GEOMETRY.fields_by_name['pointSet'].message_type = _POINTSET
+_GEOMETRY.fields_by_name['primitiveSet'].message_type = _PRIMITIVESET
+_GEOMETRY.fields_by_name['transform'].message_type = _TRANSFORM
 _OBJECT.fields_by_name['camera'].message_type = _CAMERA
+_OBJECT.fields_by_name['transform'].message_type = _TRANSFORM
+_OBJECT.fields_by_name['geometry'].message_type = _GEOMETRY
 _OBJECT.fields_by_name['images'].message_type = _IMAGE
 _OBJECT.fields_by_name['imagesRaw'].message_type = _IMAGERAW
-_SCENE.fields_by_name['objects'].message_type = _OBJECT
-_ROW.fields_by_name['scenes'].message_type = _SCENE
+_OBJECT.fields_by_name['audioChannelsRaw'].message_type = _AUDIOCHANNELRAW
+_OBJECT.fields_by_name['objects'].message_type = _OBJECT
+_FRAME.fields_by_name['objects'].message_type = _OBJECT
+_FRAMESET.fields_by_name['frames'].message_type = _FRAME
+_FRAMESET.fields_by_name['frameSets'].message_type = _FRAMESET
 DESCRIPTOR.message_types_by_name['PointSet'] = _POINTSET
+DESCRIPTOR.message_types_by_name['PrimitiveSet'] = _PRIMITIVESET
 DESCRIPTOR.message_types_by_name['Transform'] = _TRANSFORM
 DESCRIPTOR.message_types_by_name['Camera'] = _CAMERA
 DESCRIPTOR.message_types_by_name['Image'] = _IMAGE
 DESCRIPTOR.message_types_by_name['ImageRaw'] = _IMAGERAW
-DESCRIPTOR.message_types_by_name['Mesh'] = _MESH
+DESCRIPTOR.message_types_by_name['Geometry'] = _GEOMETRY
+DESCRIPTOR.message_types_by_name['AudioChannelRaw'] = _AUDIOCHANNELRAW
 DESCRIPTOR.message_types_by_name['Object'] = _OBJECT
-DESCRIPTOR.message_types_by_name['Scene'] = _SCENE
-DESCRIPTOR.message_types_by_name['Row'] = _ROW
+DESCRIPTOR.message_types_by_name['Frame'] = _FRAME
+DESCRIPTOR.message_types_by_name['FrameSet'] = _FRAMESET
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 PointSet = _reflection.GeneratedProtocolMessageType('PointSet', (_message.Message,), {
@@ -668,6 +1023,13 @@ PointSet = _reflection.GeneratedProtocolMessageType('PointSet', (_message.Messag
   # @@protoc_insertion_point(class_scope:PointSet)
   })
 _sym_db.RegisterMessage(PointSet)
+
+PrimitiveSet = _reflection.GeneratedProtocolMessageType('PrimitiveSet', (_message.Message,), {
+  'DESCRIPTOR' : _PRIMITIVESET,
+  '__module__' : 'base_pb2'
+  # @@protoc_insertion_point(class_scope:PrimitiveSet)
+  })
+_sym_db.RegisterMessage(PrimitiveSet)
 
 Transform = _reflection.GeneratedProtocolMessageType('Transform', (_message.Message,), {
   'DESCRIPTOR' : _TRANSFORM,
@@ -697,12 +1059,19 @@ ImageRaw = _reflection.GeneratedProtocolMessageType('ImageRaw', (_message.Messag
   })
 _sym_db.RegisterMessage(ImageRaw)
 
-Mesh = _reflection.GeneratedProtocolMessageType('Mesh', (_message.Message,), {
-  'DESCRIPTOR' : _MESH,
+Geometry = _reflection.GeneratedProtocolMessageType('Geometry', (_message.Message,), {
+  'DESCRIPTOR' : _GEOMETRY,
   '__module__' : 'base_pb2'
-  # @@protoc_insertion_point(class_scope:Mesh)
+  # @@protoc_insertion_point(class_scope:Geometry)
   })
-_sym_db.RegisterMessage(Mesh)
+_sym_db.RegisterMessage(Geometry)
+
+AudioChannelRaw = _reflection.GeneratedProtocolMessageType('AudioChannelRaw', (_message.Message,), {
+  'DESCRIPTOR' : _AUDIOCHANNELRAW,
+  '__module__' : 'base_pb2'
+  # @@protoc_insertion_point(class_scope:AudioChannelRaw)
+  })
+_sym_db.RegisterMessage(AudioChannelRaw)
 
 Object = _reflection.GeneratedProtocolMessageType('Object', (_message.Message,), {
   'DESCRIPTOR' : _OBJECT,
@@ -711,19 +1080,19 @@ Object = _reflection.GeneratedProtocolMessageType('Object', (_message.Message,),
   })
 _sym_db.RegisterMessage(Object)
 
-Scene = _reflection.GeneratedProtocolMessageType('Scene', (_message.Message,), {
-  'DESCRIPTOR' : _SCENE,
+Frame = _reflection.GeneratedProtocolMessageType('Frame', (_message.Message,), {
+  'DESCRIPTOR' : _FRAME,
   '__module__' : 'base_pb2'
-  # @@protoc_insertion_point(class_scope:Scene)
+  # @@protoc_insertion_point(class_scope:Frame)
   })
-_sym_db.RegisterMessage(Scene)
+_sym_db.RegisterMessage(Frame)
 
-Row = _reflection.GeneratedProtocolMessageType('Row', (_message.Message,), {
-  'DESCRIPTOR' : _ROW,
+FrameSet = _reflection.GeneratedProtocolMessageType('FrameSet', (_message.Message,), {
+  'DESCRIPTOR' : _FRAMESET,
   '__module__' : 'base_pb2'
-  # @@protoc_insertion_point(class_scope:Row)
+  # @@protoc_insertion_point(class_scope:FrameSet)
   })
-_sym_db.RegisterMessage(Row)
+_sym_db.RegisterMessage(FrameSet)
 
 
 # @@protoc_insertion_point(module_scope)

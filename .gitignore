@@ -1,7 +1,12 @@
 *.exe
 *.mp4
 *.misha
+*.mtl
+*.mi
+*.hip
+*.hda
 examples/mishatemp
+backup/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

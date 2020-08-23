@@ -1,84 +1,141 @@
 syntax = "proto3";
 
+// A collection of nP points in 3d space.
+// Each point may belong to a subset of nPG groups
 message PointSet {
-  string name = 1;
-  bytes P = 2;                        // position (n,3,)
-  bytes N = 3;                        // normal (n,3,)
-  bytes v = 4;                        // velocity (n,3,)
-  bytes scale = 5;                    // scale (n,3,)
-  bytes Cd = 6;                       // diffuse color (n,3,)
-  bytes Alpha = 7;                    // alpha (n,)
-  bytes Cs = 8;                       // specular color (n,3,)
-  bytes Cr = 9;                       // reflect color (n,3,)
-  bytes Ct = 10;                      // transmit color (n,3,)
-  bytes Ce = 11;                      // emission color (n,3,)
-  bytes rough = 12;                   // roughness (n,)
-  bytes fresnel = 13;                 // fresnel coefficient (n,)
-  bytes shadow = 14;                  // shadow intensity (n,)
-  bytes uv = 15;                      // uv map (n,4)
-  bytes group = 16;                   // point group (n,)
+  bytes P = 1;                              // position (nP,3,)
+  bytes N = 2;                              // point normal (nP,3,)
+  bytes v = 3;                              // velocity (nP,3,)
+  bytes T = 4;                              // tangent vector (nP,3,)
+  bytes orient = 5;                         // orientation (nP,4,)
+  bytes scale = 6;                          // scale (nP,3,)
+  bytes pscale = 7;                         // uniform scale (nP,)
+  bytes Cd = 8;                             // diffuse color (nP,3,)
+  bytes Alpha = 9;                          // alpha (nP,)
+  bytes Cs = 10;                            // specular color (nP,3,)
+  bytes Cr = 11;                            // reflect color (nP,3,)
+  bytes Ct = 12;                            // transmit color (nP,3,)
+  bytes Ce = 13;                            // emission color (nP,3,)
+  bytes rough = 14;                         // roughness (nP,)
+  bytes fresnel = 15;                       // fresnel coefficient (nP,)
+  bytes shadow = 16;                        // shadow intensity (nP,)
+  bytes groups = 17;                        // point groups (nP,nPG)
+  repeated string groupNames = 18;          // point group names (nPG)
+  bytes data = 19;                          // per-point arbitrary payload (nP,?)
+  repeated string cachedFields = 20;        // fields to fetch from master pack
+  repeated string lowPrecisionFields = 21;  // field-dependent precision profile
 }
 
+// A collection of nPrim primitives.
+// Each primitive may belong to a subset of nPrimG groups
+message PrimitiveSet {
+  enum PrimitiveType {
+    POLYGON = 0;                            // Tri / Quad polygons
+  }
+  PrimitiveType type = 1;
+  bytes Cd = 2;                             // vertex colors (nPrim,nPV,3)
+  bytes Alpha = 3;                          // alpha (nPrim,nPV,)
+  bytes faces = 4;                          // point indices (nPrim,nPV,)
+  bytes uv = 5;                             // uv map (nUV,nPrim,nPV,2)
+  bytes N = 6;                              // vertex normal (nPrim,nPV,3)
+  bytes groups = 7;                         // primitive groups (nPrim,nPrimG)
+  repeated string groupNames = 8;           // primitive group names (nPrimG)
+  int32 nPV = 9;                            // number of vertices contained in a primitive
+  int32 nUV = 10;                           // number of UV maps
+  repeated string cachedFields = 11;        // fields to fetch from master pack
+  repeated string lowPrecisionFields = 12;  // field-dependent precision profile
+}
+
+// A transformations tree
 message Transform {
-  string name = 1;
-  bytes T = 2;                        // translation (3,)
-  bytes Q = 3;                        // quaternion (4,)
+  int32 id = 1;
+  bytes T = 2;                              // translation (3,)
+  bytes R = 3;                              // orientation (4,)
+  bytes scale = 4;                          // scale (3,)
+  repeated Transform transform = 5;
 }
 
 message Camera {
-  string name = 1;
-  Transform extrinsic = 2;            // extrinsic parameters
-  bytes intrinsic = 3;                // camera matrix (3,3)
-  bytes distCoeffs = 4;               // distortion coefficients {8,}
+  enum CameraType {
+    PERSPECTIVE = 0;
+  }
+  CameraType type = 1;
+  Transform extrinsic = 2;                  // extrinsic parameters
+  bytes intrinsic = 3;                      // camera matrix (3,3)
+  bytes distCoeffs = 4;                     // distortion coefficients {8,}
 }
 
+// An encoded image
 message Image {
-  string name = 1;
-  string format = 2;                  // jpg / png
+  enum ImageFormat {
+    PNG = 0;
+    JPEG = 1;
+  }
+  ImageFormat format = 1;
+  string name = 2;
   uint32 width = 3;
   uint32 height = 4;
   uint32 channels = 5;
-  uint32 png_compression = 6;         // 0..9
-  uint32 jpeg_quality = 7;            // 0..100
-  bytes data = 8;                     // encoded image data
+  uint32 png_compression = 6;               // 0..9
+  uint32 jpeg_quality = 7;                  // 0..100
+  bytes data = 8;                           // encoded image data
 }
 
+// A raw image
 message ImageRaw {
   string name = 1;
-  string dtype = 2;                   
+  string dtype = 2;                         // dtype
   uint32 width = 3;
   uint32 height = 4;
   uint32 channels = 5;
   bytes data = 6;
 }
 
-message Mesh {
-  int32 index = 1;
+message Geometry {
+  int32 id = 1;
   string name = 2;
   PointSet pointSet = 3;
-  bytes faces = 4;                    // point indices (m,3,)
+  PrimitiveSet primitiveSet = 4;
+  Transform transform = 5;
+  repeated string cachedFields = 6;         // fields to fetch from master pack
 }
 
-message Object {
-  int32 index = 1;
+message AudioChannelRaw {
+  int32 id = 1;
   string name = 2;
-  Transform transform = 3;
-  PointSet pointSet = 4;
-  Mesh mesh = 5;
-  Camera camera = 6;
+  string dtype = 3;                         // dtype
+  int32 sampleRate = 4;
+  bytes data = 5;
+}
+
+// A container for heterogeneous data and other objects
+message Object {
+  int32 id = 1;
+  string name = 2;
+  string text = 3;
+  Camera camera = 4;
+  Transform transform = 5;
+  repeated Geometry geometry = 6;
   repeated Image images = 7;
   repeated ImageRaw imagesRaw = 8;
+  repeated AudioChannelRaw audioChannelsRaw = 9;
+  repeated Object objects = 10;
+  bytes data = 11;                          // arbitrary payload (nP,?)
+  repeated string cachedFields = 12;        // fields to fetch from master pack
 }
 
-message Scene {
-  string name = 1;
-  string description = 2;
-  repeated Object objects = 3;
-}
-
-message Row {
-  int64 frame = 1;
+// A data snapshot at some point in time
+message Frame {
+  int32 id = 1;
   string name = 2;
-  string description = 3;
-  repeated Scene scenes =43;          // a set of Scenes (N,)
+  float timestamp = 3;
+  repeated Object objects = 4;
+}
+
+message FrameSet {
+  int32 id = 1;
+  repeated Frame frames = 2;
+  repeated FrameSet frameSets = 3;
+  string version = 4;
+  bool is_master = 5;
 }
