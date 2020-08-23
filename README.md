@@ -3,6 +3,8 @@
 ## Overview
 Simple and flexible data representation.
 
+![](./docs/scheme_1.png)
+
 Mishandra aims to simplify:
 1. Data management in R&D workflows and production pipelines. 
 2. Data iteroperability between content creation and machine learning tools.
@@ -44,4 +46,5 @@ You also need [ffmpeg](https://ffmpeg.org/download.html) installed on your syste
 ## Sample Usage
 Please take a look at notebooks in ```examples``` directory.
 * [examples_python.ipynb](examples/examples_python.ipynb)
+* [examples_houdini.ipynb](examples/examples_python.ipynb)
 
