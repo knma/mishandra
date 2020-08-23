@@ -3,14 +3,20 @@
 ## Overview
 Simple and flexible data representation.
 
+
+
+![](./docs/scheme_1.png)
+
+
+
 Mishandra aims to simplify:
 1. Data management in R&D workflows and production pipelines. 
 2. Data iteroperability between content creation and machine learning tools.
 
 ### Supported interfaces
-* [Trimesh](https://github.com/mikedh/trimesh)
-* [Houdini](https://www.sidefx.com/) in progress
-* [Blender](https://www.blender.org/) in progress
+* Python
+* [Houdini](https://www.sidefx.com/)
+* [Blender](https://www.blender.org/) TODO
 * [PyTorch](https://pytorch.org/) in progress
 
 ## Installation
@@ -33,7 +39,8 @@ If you get ```WARNING! Powershell script execution unavailable```, please run ``
 TODO
 
 ### 2. Install Mishandra
-Mishandra requires python 3.5+
+Mishandra requires python 3.5+ in full configuration.
+Mishandra inside Houdini works with python 2.7.
 
 ```
 pip install git+https://github.com/knma/mishandra.git@master
@@ -44,4 +51,5 @@ You also need [ffmpeg](https://ffmpeg.org/download.html) installed on your syste
 ## Sample Usage
 Please take a look at notebooks in ```examples``` directory.
 * [examples_python.ipynb](examples/examples_python.ipynb)
+* [examples_houdini.ipynb](examples/examples_python.ipynb)
 
