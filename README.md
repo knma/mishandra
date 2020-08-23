@@ -10,9 +10,9 @@ Mishandra aims to simplify:
 2. Data iteroperability between content creation and machine learning tools.
 
 ### Supported interfaces
-* [Trimesh](https://github.com/mikedh/trimesh)
-* [Houdini](https://www.sidefx.com/) in progress
-* [Blender](https://www.blender.org/) in progress
+* [Python]
+* [Houdini](https://www.sidefx.com/)
+* [Blender](https://www.blender.org/) TODO
 * [PyTorch](https://pytorch.org/) in progress
 
 ## Installation
@@ -35,7 +35,8 @@ If you get ```WARNING! Powershell script execution unavailable```, please run ``
 TODO
 
 ### 2. Install Mishandra
-Mishandra requires python 3.5+
+Mishandra requires python 3.5+ in full configuration.
+Mishandra inside Houdini works with python 2.7.
 
 ```
 pip install git+https://github.com/knma/mishandra.git@master
