@@ -10,7 +10,7 @@ Mishandra aims to simplify:
 2. Data iteroperability between content creation and machine learning tools.
 
 ### Supported interfaces
-* [Python]
+* Python
 * [Houdini](https://www.sidefx.com/)
 * [Blender](https://www.blender.org/) TODO
 * [PyTorch](https://pytorch.org/) in progress
