@@ -108,7 +108,7 @@ def pack(meshes, id, cfg=None, verbose=False, is_master=False, master_pack=None)
               geo.primitiveSet.uv = uv.astype(get_field_dtype_with_precision('PrimitiveSet', 'uv')).tobytes()
 
           # Vertex normals
-          if not use_master or not_cached(geo_master.primitiveSet, 'N'):
+          if (not use_master or not_cached(geo_master.primitiveSet, 'N')) and is_not_ignored('PrimitiveSet', 'N'):
             vertex_normals = obj_mesh.vertex_normals[tri_faces_flat]
             geo.primitiveSet.N = vertex_normals.astype(get_field_dtype_with_precision('PrimitiveSet', 'N')).tobytes()
 
@@ -116,9 +116,9 @@ def pack(meshes, id, cfg=None, verbose=False, is_master=False, master_pack=None)
           colors = getattr(obj_mesh.visual, 'vertex_colors', None)
           if colors is not None:
             colors = colors[tri_faces_flat]
-            if not use_master or not_cached(geo_master.primitiveSet, 'Cd'):
+            if (not use_master or not_cached(geo_master.primitiveSet, 'Cd')) and is_not_ignored('PrimitiveSet', 'Cd'):
               geo.primitiveSet.Cd = colors[:,:3].astype(get_field_dtype_with_precision('PrimitiveSet', 'Cd')).tobytes()
-            if not use_master or not_cached(geo_master.primitiveSet, 'Alpha'):
+            if (not use_master or not_cached(geo_master.primitiveSet, 'Alpha')) and is_not_ignored('PrimitiveSet', 'Alpha'):
               geo.primitiveSet.Alpha = colors[:,3:4].astype(get_field_dtype_with_precision('PrimitiveSet', 'Alpha')).tobytes()
 
         # ****** PointSet ******
