@@ -22,7 +22,7 @@ setuptools.setup(
     install_requires=[
        'numpy',
        'protobuf',
-       'opencv-python',
+       'opencv-python==4.2.0.32',
        'cassandra-driver>=3.24',
     ],
     extras_require={
