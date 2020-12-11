@@ -1,7 +1,7 @@
 from __future__ import print_function, absolute_import
 
 import numpy as np
-from . import base_pb2
+# from . import base_pb2
 from ..utils.text import colored, decorated
 from google.protobuf.text_format import MessageToString
 from google.protobuf.json_format import MessageToDict

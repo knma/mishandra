@@ -2,9 +2,10 @@ from __future__ import print_function, absolute_import
 
 import sys, os, glob
 import numpy as np
-import ffmpeg, cv2
-import subprocess
 
+if sys.version_info[0] > 3:
+  import ffmpeg, cv2
+  import subprocess
 
 def make_video(frames, frames_dir=None, size=None, video_path=None, video_bitrate=8e6):
   if video_path is None:
