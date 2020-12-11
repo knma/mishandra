@@ -86,7 +86,8 @@ def pack(meshes, id, cfg=None, verbose=False, is_master=False, master_pack=None)
           obj_master = frame_master.objects[o_i]
           geo_master = obj_master.geometry[0]
 
-        points, indices, inverse_point_indices = np.unique(obj_mesh.vertices, axis=0, return_inverse=True, return_index=True)
+        # points, indices, inverse_point_indices = np.unique(obj_mesh.vertices, axis=0, return_inverse=True, return_index=True)
+        points = obj_mesh.vertices.flatten()
         tri_faces_flat = obj_mesh.faces.flatten()
 
         # ****** PrimitiveSet ******
@@ -97,7 +98,8 @@ def pack(meshes, id, cfg=None, verbose=False, is_master=False, master_pack=None)
           geo.primitiveSet.nPV = 3 # 3 vertices per primitive
           geo.primitiveSet.nUV = 1 # 1 UV set
           if not use_master or not_cached(geo_master.primitiveSet, 'faces'):
-            faces_flat = inverse_point_indices[tri_faces_flat]
+            faces_flat = obj_mesh.faces.flatten()
+            # faces_flat = inverse_point_indices[tri_faces_flat]
             geo.primitiveSet.faces = faces_flat.astype(get_field_dtype_with_precision('PrimitiveSet','faces')).tobytes()
 
           # UV
