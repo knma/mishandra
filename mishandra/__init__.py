@@ -5,6 +5,7 @@ from .mishandra import MishandraSession
 from .utils import *
 
 from .houdini import *
+from .body_client import *
 
 if sys.version_info[0] < 3:
   pass
