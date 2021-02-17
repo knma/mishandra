@@ -17,11 +17,11 @@ class BodyRefiner(object):
     self.module_node = module_node
     
     module = sys.modules[__name__]
-    joints_current = getattr(module, 'joints_current', None)
-    if joints_current is None:
-      joints_current = {}
-      setattr(module, 'joints_current', joints_current)
-    self.joints_current = joints_current
+    refiner_state = getattr(module, 'refiner_state', None)
+    if refiner_state is None:
+      refiner_state = {}
+      setattr(module, 'refiner_state', refiner_state)
+    self.refiner_state = refiner_state
 
     def make_subnet():
       container = node.parent().parent()
@@ -44,13 +44,13 @@ class BodyRefiner(object):
     # self.subnet = make_subnet()
     print('BodyRefiner created')
 
-  def set_joints(self, joints):
-    joint_nodes = self.module_node.parent().parent().glob("joint*")
+  def set_joints(self, joints, joint_nodes, namelen=5):
     if len(joints.shape) > 2:
       joints = joints[0]
     joints_scene = self.transform_points(joints)
+
     for joint_node in joint_nodes:
-      i = int(joint_node.name()[5:])
+      i = int(joint_node.name()[namelen:])
       joint = joints_scene[i]
       key_x = self.hou.Keyframe()
       key_x.setFrame(self.frame)
@@ -66,22 +66,13 @@ class BodyRefiner(object):
       joint_node.parm('tz').setKeyframe(key_z)
       key_s = self.hou.Keyframe()
       key_s.setFrame(self.frame)
-      key_s.setValue(0.5)
+      key_s.setValue(0.4)
       joint_node.parm('scale').setKeyframe(key_s)
-    self.module_node.parent().parent().node('opt').setCurrent(False, clear_all_selected=True)
-    self.module_node.parent().parent().node('opt').setSelected(False, clear_all_selected=True)
 
   def get_joints(self):
-    # if self.frame in self.joints_current:
-    #   return  
-
-    joint_nodes = self.module_node.parent().parent().glob("joint*")
     joints_scene = np.zeros((127, 4), dtype=np.float32)
-    for joint_node in joint_nodes:
+    for joint_node in self.joint_nodes:
       i = int(joint_node.name()[5:])
-      # if i < 10:
-      #   print(i, joint_node.parm('tx').eval())
-
       joints_scene[i, 0] = joint_node.parm('tx').eval()
       joints_scene[i, 1] = joint_node.parm('ty').eval()
       joints_scene[i, 2] = joint_node.parm('tz').eval()
@@ -107,13 +98,25 @@ class BodyRefiner(object):
     return points
 
   def update(self):
+    obj_opt = self.module_node.parent().parent().node('opt')
+
     self.frame = int(self.hou.frame())
+    self.update_joints = self.module_node.evalParm("update_joints")
+    if self.update_joints:
+      obj_opt = self.module_node.parent().parent().node('opt')
+      for part in ['body', 'rhand', 'lhand', 'lleg', 'rleg']:
+        key = self.hou.Keyframe()
+        key.setFrame(self.frame)
+        key.setValue(1)
+        obj_opt.parm(part + '_verts').setKeyframe(key)
+    
     self.url = self.module_node.evalParm("body_refiner_url")
     self.target_dir = self.module_node.evalParm("ref_seq_dir")
     self.timeout = self.module_node.evalParm("timeout")
-    self.seq_name = self.module_node.evalParm("source_params")
+    self.source_sequence = self.module_node.evalParm("source_params")
+    self.ref_sequence = self.module_node.parent().node('opt').geometry().stringAttribValue("ref_sequence")
     self.optimize = self.module_node.evalParm("optimize")
-    self.update_joints = self.module_node.evalParm("update_joints")
+    self.optimize_hands = self.module_node.evalParm("optimize_hands")
     self.make_request = self.module_node.evalParm("make_request")
     self.rate = self.module_node.evalParm("rate")
     self.rate_hands = self.module_node.evalParm("rate_hands")
@@ -123,17 +126,65 @@ class BodyRefiner(object):
     self.lambda_zero_prior_hands = self.module_node.evalParm("lambda_zero_prior_hands")
     self.cx = self.module_node.parent().node('opt').evalParm("cx")
     self.cy = self.module_node.parent().node('opt').evalParm("cy")
+    self.set_frame_range = obj_opt.evalParm("set_frame_range")
+    self.show_status_dialog = obj_opt.evalParm("show_status_dialog")
+    self.save_refined_sequence = obj_opt.evalParm("save_refined_sequence")
+    self.fetch_image = obj_opt.evalParm("fetch_image")
+    self.offline_after_request = obj_opt.evalParm("offline_after_request")
+    self.lhand_verts = obj_opt.evalParm("lhand_verts")
+    self.rhand_verts = obj_opt.evalParm("rhand_verts")
+    self.lleg_verts = obj_opt.evalParm("lleg_verts")
+    self.rleg_verts = obj_opt.evalParm("rleg_verts")
+    self.body_verts = obj_opt.evalParm("body_verts")
 
-    joint_nodes = self.module_node.parent().parent().glob("joint*")
+    self.operation = self.hou.InterruptableOperation("...", long_operation_name="...", open_interrupt_dialog=self.show_status_dialog)
+    self.operation.__enter__()
+
+    self.joint_nodes = self.module_node.parent().parent().glob("joint*")
+    self.joint_nodes_current = self.module_node.parent().parent().node("jc").glob("jcurrent*")
+    self.joint_nodes_source = self.module_node.parent().parent().node("js").glob("jsource*")
+
     if self.make_request:
       self.request()
-    
-    for joint_node in joint_nodes:
-      scale = joint_node.parm('scale').eval()
-      dcolor = (0,0,1) if scale < 0.5001 else (0,1,0)
-      joint_node.parm('dcolorr').set(dcolor[0])
-      joint_node.parm('dcolorg').set(dcolor[1])
-      joint_node.parm('dcolorb').set(dcolor[2])
+      if self.offline_after_request:
+        self.go_offline()
+
+    colors_are_set = self.refiner_state.get('colors_are_set', False)
+    if not colors_are_set:
+      self.refiner_state['colors_are_set'] = True
+
+      for joint_node in self.joint_nodes:
+        scale = joint_node.parm('scale').eval()
+        dcolor = (0,0,1) if scale < 0.4001 else (0,0,1)
+        joint_node.parm('dcolorr').set(dcolor[0])
+        joint_node.parm('dcolorg').set(dcolor[1])
+        joint_node.parm('dcolorb').set(dcolor[2])
+
+      for joint_node in self.joint_nodes_current:
+        scale = joint_node.parm('scale').eval()
+        dcolor = (1,1,1)
+        joint_node.parm('dcolorr').set(dcolor[0])
+        joint_node.parm('dcolorg').set(dcolor[1])
+        joint_node.parm('dcolorb').set(dcolor[2])
+
+      for joint_node in self.joint_nodes_source:
+        scale = joint_node.parm('scale').eval()
+        dcolor = (1,0.5,0.5)
+        joint_node.parm('dcolorr').set(dcolor[0])
+        joint_node.parm('dcolorg').set(dcolor[1])
+        joint_node.parm('dcolorb').set(dcolor[2])
+
+    # self.module_node.parent().parent().node('geo1').setCurrent(True, clear_all_selected=True)
+    # self.module_node.parent().parent().node('geo1').setSelected(True, clear_all_selected=True)
+    # self.module_node.parent().parent().node('opt').setCurrent(True, clear_all_selected=True)
+    # self.module_node.parent().parent().node('opt').setSelected(True, clear_all_selected=True)
+
+    self.operation.__exit__(None, None, None)
+
+  def go_offline(self):
+    self.module_node.parent().parent().node('opt').parm('make_request').set(0)
+    self.module_node.parent().parent().node('opt').parm('reset_joints').set(0)
+    self.module_node.parent().parent().node('opt').parm('optimize').set(0)
 
   def request(self):
     if self.url is None or len(self.url) < 1:
@@ -146,15 +197,18 @@ class BodyRefiner(object):
       scales = 0
       if self.optimize:
         joints, scales = self.get_joints()
-        # scales[scales<0.5001] = 0
 
       buf = StringIO()
       np.savez_compressed(
         buf,
         data=data,
         frame=self.frame,
-        seq_name=self.seq_name,
+        source_sequence=self.source_sequence,
+        ref_sequence=self.ref_sequence,
         optimize=self.optimize,
+        optimize_hands=self.optimize_hands,
+        save_refined_sequence = self.save_refined_sequence,
+        fetch_image = self.fetch_image,
         joints=joints,
         scales=scales,
         rate=self.rate,
@@ -162,9 +216,15 @@ class BodyRefiner(object):
         num_iters=self.num_iters,
         num_iters_hands=self.num_iters_hands,
         lambda_verts=self.lambda_verts,
-        lambda_zero_prior_hands=self.lambda_zero_prior_hands
+        lambda_zero_prior_hands=self.lambda_zero_prior_hands,
+        lhand_vert_mult = self.lhand_verts,
+        rhand_vert_mult = self.rhand_verts,
+        lleg_vert_mult = self.lleg_verts,
+        rleg_vert_mult = self.rleg_verts,
+        body_vert_mult = self.body_verts
       )
       buf.seek(0)
+      self.operation.updateLongProgress(0.1, "Waiting for the Server...")
       res = requests.post(url=self.url,   
                           data=buf,
                           headers={'Content-Type': 'application/octet-stream'},
@@ -179,20 +239,36 @@ class BodyRefiner(object):
       buf_all.seek(0)
       res_all = pickle.load(buf_all)
 
-      if self.update_joints:
-        self.set_joints(res_all['joints'])
+      if self.set_frame_range:
+        num_frames = res_all['num_frames']
+        self.hou.playbar.setFrameRange(0, num_frames-1)
 
+      self.operation.updateLongProgress(0.5, "Updating KeyFrames...")
+
+      if self.update_joints:
+        self.set_joints(res_all['joints'], self.joint_nodes)
+      if not self.optimize:
+        if self.module_node.parent().parent().node("js").isDisplayFlagSet():
+          self.set_joints(res_all['joints'], self.joint_nodes_source, namelen=7)
+
+      if self.module_node.parent().parent().node("jc").isDisplayFlagSet():
+        self.set_joints(res_all['joints'], self.joint_nodes_current, namelen=8)
+
+      self.operation.updateLongProgress(0.8, "Writing geometry...")
       with open(fpath, 'wb') as f:
           f.write(res_all['geo'].getvalue())
+
+      if 'image' in res_all:
+        self.operation.updateLongProgress(0.8, "Saving image...")
+        im_dir = self.module_node.parent().node('opt').geometry().stringAttribValue("ref_im_dir")
+        if not os.path.exists(im_dir):
+          os.makedirs(im_dir)
+        fpath = os.path.join(im_dir, str(self.frame).zfill(8) + '.jpg')
+        with open(fpath, 'wb') as f:
+            f.write(res_all['image'].getvalue())
       
     except Exception as e:
       print(e)
 
-  # def make_joint_nodes(self):
-  #   control_nodes = self.subnet.children()
-  #   for control_node in control_nodes:
-  #     if control_node.type().name() == "subnet" and "alc_geo" in adj_node.name():
-  #       subnet = adj_node
-  #       break
-  #   if subnet is None:
-  #     subnet = container.createNode("subnet", "alc_geo")
+
+
