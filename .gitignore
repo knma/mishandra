@@ -3,7 +3,7 @@
 *.misha
 *.mtl
 *.mi
-*.hip
+# *.hip
 examples/mishatemp
 backup/
 
