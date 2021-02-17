@@ -4,7 +4,6 @@
 *.mtl
 *.mi
 *.hip
-*.hda
 examples/mishatemp
 backup/
 
