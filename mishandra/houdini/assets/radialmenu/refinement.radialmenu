@@ -11,14 +11,14 @@
 			"type":"script_action",
 			"icon":"MISC_python",
 			"check":"hou.node('/obj/opt').parm('reset_joints').eval() == 1",
-			"script":"hou.node('/obj/opt').parm('reset_joints').set(1)\nhou.node('/obj/opt').parm('make_request').set(1)\nhou.node('/obj/opt').parm('optimize').set(0)"
+			"script":"hou.node('/obj/opt').parm('reset_joints').set(1)\nhou.node('/obj/opt').parm('make_request').set(1)\nhou.node('/obj/opt').parm('optimize').set(0)\n\nhou.node('/obj/opt').parm('rate').set(hou.node('/obj/opt').parm('rate').eval())"
 		},
 		"2":{
 			"label":"Optimize",
 			"type":"script_action",
 			"icon":"MISC_python",
 			"check":"hou.node('/obj/opt').parm('optimize').eval() == 1",
-			"script":"hou.node('/obj/opt').parm('optimize').set(1)\nhou.node('/obj/opt').parm('reset_joints').set(0)\nhou.node('/obj/opt').parm('make_request').set(1)"
+			"script":"hou.node('/obj/opt').parm('optimize').set(1)\nhou.node('/obj/opt').parm('reset_joints').set(0)\nhou.node('/obj/opt').parm('make_request').set(1)\n\nhou.node('/obj/opt').parm('rate').set(hou.node('/obj/opt').parm('rate').eval())"
 		},
 		"3":{
 			"label":"Hands",

@@ -1,4 +1,4 @@
-import requests, os, sys
+import requests, os, sys, time
 import numpy as np
 from StringIO import StringIO
 import pickle
@@ -70,7 +70,7 @@ class BodyRefiner(object):
       joint_node.parm('scale').setKeyframe(key_s)
 
   def get_joints(self):
-    joints_scene = np.zeros((127, 4), dtype=np.float32)
+    joints_scene = np.zeros((76, 4), dtype=np.float32)
     for joint_node in self.joint_nodes:
       i = int(joint_node.name()[5:])
       joints_scene[i, 0] = joint_node.parm('tx').eval()
@@ -191,8 +191,6 @@ class BodyRefiner(object):
       return
       
     try:
-      data = np.random.randn(2, 4)
-
       joints = 0
       scales = 0
       if self.optimize:
@@ -201,7 +199,6 @@ class BodyRefiner(object):
       buf = StringIO()
       np.savez_compressed(
         buf,
-        data=data,
         frame=self.frame,
         source_sequence=self.source_sequence,
         ref_sequence=self.ref_sequence,
@@ -235,6 +232,10 @@ class BodyRefiner(object):
       fname = str(self.frame).zfill(8) + '.mi'
       fpath = os.path.join(self.target_dir, fname)
 
+      if res.status_code is not 200:
+        print('Server error')
+        return
+
       buf_all = StringIO(res.content)
       buf_all.seek(0)
       res_all = pickle.load(buf_all)
@@ -258,7 +259,7 @@ class BodyRefiner(object):
       with open(fpath, 'wb') as f:
           f.write(res_all['geo'].getvalue())
 
-      if 'image' in res_all:
+      if res_all.get('image', None) is not None:
         self.operation.updateLongProgress(0.8, "Saving image...")
         im_dir = self.module_node.parent().node('opt').geometry().stringAttribValue("ref_im_dir")
         if not os.path.exists(im_dir):
